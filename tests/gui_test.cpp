@@ -113,7 +113,7 @@ class GuiTestApp : public wxApp {
         });
         window_->ConfigurePowerLimit();
         DialogAction(wxS("Über XY-SK150"),[this](wxDialog* dialog){
-            Check(wxWindow::FindWindowByLabel("Version V0.2",dialog),"Version fehlt");
+            Check(wxWindow::FindWindowByLabel("Version V0.2.1",dialog),"Version fehlt");
             Check(wxWindow::FindWindowByLabel(wxS("© 2026 Martin Dietl"),dialog),"Name fehlt");
             Check(!wxWindow::FindWindowByLabel(wxS("C++ · wxWidgets · Debian / Linux"),dialog),"Entfernte C++-Zeile vorhanden");
             Check(First<wxStaticBitmap>(dialog)!=nullptr,"Logo fehlt");
@@ -122,7 +122,7 @@ class GuiTestApp : public wxApp {
         ShowAbout(window_);
         DialogAction("Softwarelizenz und Logohinweis",[this](wxDialog* dialog){
             auto text=First<wxTextCtrl>(dialog);
-            Check(text&&text->GetValue().Contains("Copyright (c) 2026 Martin Dietl")&&text->GetValue().Contains(wxS("Logo-Ausnahme"))&&text->GetValue().Contains("dietl.martin@mail.de")&&text->GetValue().Contains(wxS("Martin-Dietl-Softwarelizenz")),"Lizenz/Logo-Ausnahme fehlt");
+            Check(text&&text->GetValue().Contains("Copyright (c) 2026 Martin Dietl")&&text->GetValue().Contains(wxS("Logo-Ausnahme"))&&text->GetValue().Contains("dietl.martin@mail.de")&&text->GetValue().Contains(wxS("Martin-Dietl-Softwarelizenz"))&&text->GetValue().Contains("Version 1.1")&&text->GetValue().Contains(wxS("Schulen"))&&text->GetValue().Contains(wxS("Behörden")),"Lizenz/Logo-Ausnahme fehlt");
             dialog->EndModal(wxID_OK);
         });
         ShowLicense(window_);
