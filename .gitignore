@@ -1,0 +1,12 @@
+# Local build products
+/sk150
+/protocol-test
+/display-test
+/connection-test
+/gui-test
+*.o
+__pycache__/
+*.pyc
+# Local preferences and test captures
+*.conf
+/testshots/

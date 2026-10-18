@@ -1,0 +1,128 @@
+Martin-Dietl-Softwarelizenz
+Version 1.0 · 18. Oktober 2026
+
+Copyright (c) 2026 Martin Dietl
+© 2026 Martin Dietl
+Kontakt: dietl.martin@mail.de
+
+Diese Lizenz gilt für die mit ihr bereitgestellte Software „XY-SK150 Steuerung“
+einschließlich ihres eigenen Quellcodes und ihrer Dokumentation (nachfolgend
+„Software“). Martin Dietl ist nachfolgend der „Lizenzgeber“.
+
+1. Private und nichtkommerzielle Nutzung
+
+Die Software darf für private, nichtkommerzielle Zwecke kostenlos genutzt,
+vervielfältigt, untersucht und verändert werden. Eine Meldung an den Lizenzgeber
+ist dafür nicht erforderlich. Nichtkommerzielle Weitergabe ist unter den
+Bedingungen der Ziffern 4 und 5 erlaubt.
+
+2. Kostenlose firmeninterne Nutzung mit einmaliger Meldung
+
+Unternehmen und selbstständig Tätige dürfen die Software für eigene interne
+betriebliche oder berufliche Zwecke kostenlos nutzen, vervielfältigen und
+anpassen. Dies umfasst etwa die Verwendung als internes Werkzeug in Werkstatt,
+Entwicklung, Prüfung oder Produktion, auch wenn dabei entgeltliche Waren oder
+Dienstleistungen entstehen. Die Software selbst darf dabei nicht Dritten als
+Produkt, entgeltliche Softwareleistung oder Bestandteil eines solchen Angebots
+überlassen oder zur Nutzung angeboten werden; hierfür gilt Ziffer 3.
+
+Voraussetzung für die firmeninterne Nutzung ist eine einmalige E-Mail-Meldung
+an dietl.martin@mail.de vor oder spätestens bei Beginn dieser Nutzung. Die Meldung
+muss den Namen des Unternehmens bzw. der selbstständig tätigen Person und den
+Hinweis enthalten, dass „XY-SK150 Steuerung“ intern genutzt wird. Eine Meldung pro
+Unternehmen genügt für sämtliche internen Nutzer, Installationen, Standorte und
+späteren Programmaktualisierungen. Jedes rechtlich selbstständige Unternehmen
+meldet sich gesondert. Selbstständig Tätige melden sich einmal für ihren Betrieb.
+
+Die Meldung ist keine Genehmigungsanfrage. Eine Antwort oder Bestätigung des
+Lizenzgebers muss nicht abgewartet werden. Eine laufende Berichterstattung,
+Nutzerzählung oder regelmäßige erneute Meldung wird nicht verlangt.
+Die Meldung erfolgt durch den Nutzer; die Software versendet keine automatischen
+Meldungen und übermittelt keine Nutzungsdaten.
+
+3. Kommerzielle Verwertung nur mit vorheriger Zustimmung
+
+Über die ausdrücklich erlaubte interne Nutzung nach Ziffer 2 hinausgehende
+kommerzielle Verwertung bedarf der vorherigen ausdrücklichen Zustimmung des
+Lizenzgebers. Dazu gehören insbesondere:
+
+- Verkauf, Vermietung oder entgeltliche Lizenzierung der Software oder ihrer
+  veränderten Fassungen;
+- Einbindung oder Auslieferung als Bestandteil eines kommerziellen Produkts,
+  eines kostenpflichtigen Softwarepakets oder eines entgeltlichen Angebots;
+- Bereitstellung der Software oder ihrer Funktionen als kostenpflichtiger
+  Dienst für Dritte.
+
+Anfragen sind an dietl.martin@mail.de zu richten. Eine Zustimmung darf nicht aus
+dem Schweigen des Lizenzgebers abgeleitet werden. Umfang und etwaige Vergütung
+werden gesondert vereinbart. Soweit eine gesonderte Vereinbarung nicht ausdrücklich
+Abweichendes festlegt, gelten die übrigen Bedingungen dieser Lizenz weiter.
+
+4. Quellcode und Weitergabe
+
+Die unentgeltliche, nichtkommerzielle Weitergabe unveränderter oder veränderter
+Fassungen ist erlaubt, wenn jeder Empfänger zusammen mit der Software auch den
+vollständigen zugehörigen Quellcode erhält. Der Quellcode muss die bevorzugte
+bearbeitbare Form, sämtliche weitergegebenen Änderungen sowie die zur Erstellung
+der weitergegebenen Fassung erforderlichen eigenen Build-Dateien und Skripte
+enthalten. Eine reine Binärweitergabe oder ein bloßer Hinweis auf eine
+möglicherweise später verfügbare Quellcodefassung genügt nicht.
+
+Die Software und Änderungen daran müssen bei einer solchen Weitergabe unter
+dieser Lizenz, Version 1.0, bleiben. Zusätzliche Bedingungen dürfen die hierin
+eingeräumten Rechte nicht beschränken. Änderungen sind als solche zu kennzeichnen;
+sie dürfen nicht als unveränderte Originalfassung des Lizenzgebers ausgegeben
+werden. Eigene Urheberhinweise zu Änderungen dürfen ergänzt werden.
+
+Nur intern oder privat verwendete Änderungen müssen nicht veröffentlicht oder
+an den Lizenzgeber geschickt werden. Die Quellcodepflicht entsteht bei Weitergabe
+an Dritte. Eigenständige Drittkomponenten und übliche Systembibliotheken bleiben
+unter ihren eigenen Lizenzen; deren Bedingungen sind zusätzlich zu beachten.
+
+5. Erhalt von Urheber- und Lizenzhinweisen
+
+Der Hinweis „© 2026 Martin Dietl“, vorhandene Urhebervermerke, diese Lizenz und
+der zugehörige Logohinweis in NOTICE müssen bei jeder Weitergabe erhalten bleiben.
+Sie müssen auch in veränderten Fassungen enthalten und für Empfänger zugänglich
+sein. Der Urheberhinweis in einem vorhandenen Über-/Lizenzdialog darf nicht
+entfernt werden. Das Eigentum an bestehenden Rechten wird durch diese Lizenz
+nicht übertragen.
+
+6. MD-Logo und Rechte Dritter
+
+Das MD-Logo, insbesondere assets/MD_PCB_Logo.svg sowie eingebettete und gerenderte
+Fassungen, ist von den allgemeinen Nutzungsrechten dieser Softwarelizenz
+ausgenommen. Das mitgelieferte Logo darf unverändert als Bestandteil dieser
+Software und ihres Über-Dialogs angezeigt und mit dieser Software weitergegeben
+werden. Ein davon unabhängiges Recht zur Nutzung, Bearbeitung oder Verwertung
+des Logos, etwa als eigenes Kennzeichen, wird nicht eingeräumt. Gesetzliche
+Rechte und gesondert erteilte Erlaubnisse bleiben unberührt.
+
+Drittbibliotheken, insbesondere wxWidgets, unterliegen weiterhin ihren eigenen
+Lizenzen. Diese Lizenz ersetzt oder beschränkt deren Lizenzbedingungen nicht.
+
+7. Bereitstellung und Haftung
+
+Es werden keine vertraglichen Garantien für Fehlerfreiheit, Verfügbarkeit,
+Eignung für einen bestimmten Zweck oder die Schutzwirkung gegenüber
+angeschlossenen Geräten übernommen. Eine Pflicht zu Wartung, Unterstützung
+oder Aktualisierung wird nicht begründet.
+
+Gewährleistung und Haftung werden nur insoweit ausgeschlossen oder beschränkt,
+wie dies gesetzlich zulässig ist. Unberührt bleiben insbesondere die Haftung
+für Vorsatz und grobe Fahrlässigkeit, für schuldhaft verursachte Schäden an
+Leben, Körper oder Gesundheit sowie jede sonstige zwingende gesetzliche Haftung.
+Zwingende gesetzliche Rechte des Nutzers bleiben unberührt.
+
+8. Umfang und frühere Fassungen
+
+Weitergehende Rechte als die in dieser Lizenz oder einer gesonderten Zustimmung
+ausdrücklich eingeräumten Rechte werden nicht gewährt. Gesetzliche Rechte,
+die keiner vertraglichen Erlaubnis bedürfen, bleiben unberührt.
+
+Diese Lizenz betrifft die mit diesem Lizenztext bereitgestellte Fassung.
+Rechte an früher tatsächlich unter einer anderen Lizenz, insbesondere der
+MIT-Lizenz, erhaltenen Fassungen werden hierdurch nicht nachträglich eingeschränkt.
+
+Dies ist eine individuelle Source-Available-Lizenz. Sie ist weder die MIT-Lizenz
+noch eine von der Open Source Initiative anerkannte Open-Source-Lizenz.

@@ -1,0 +1,19 @@
+Software: © 2026 Martin Dietl.
+Martin-Dietl-Softwarelizenz, Version 1.0; siehe LICENSE.
+Kontakt für Firmenmeldungen und Genehmigungsanfragen: dietl.martin@mail.de
+
+Private Nutzung ist kostenlos und ohne Meldung erlaubt. Firmeninterne Nutzung
+ist kostenlos nach einmaliger E-Mail-Meldung pro Unternehmen erlaubt.
+Kommerzielle Verwertung über diese interne Nutzung hinaus benötigt die
+vorherige ausdrückliche Zustimmung von Martin Dietl. Weitergabe erfordert den
+vollständigen zugehörigen Quellcode und den Erhalt der Lizenz-/Urheberhinweise.
+Maßgeblich ist der vollständige Lizenztext in LICENSE.
+
+Logo-Ausnahme
+Das MD-Logo in assets/MD_PCB_Logo.svg sowie eingebettete und gerenderte Fassungen
+ist von den allgemeinen Rechten der Softwarelizenz ausgenommen. Die unveränderte
+Anzeige und Weitergabe als Bestandteil dieser Software und ihres Über-Dialogs
+ist erlaubt. Eine davon unabhängige Nutzung oder Verwertung des Logos wird nicht
+gestattet. Gesetzliche Rechte und gesonderte Erlaubnisse bleiben unberührt.
+
+Drittbibliotheken, insbesondere wxWidgets, behalten ihre eigenen Lizenzen.
