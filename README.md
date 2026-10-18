@@ -1,4 +1,10 @@
-# XY-SK150 Steuerung V0.2.1 – Debian 13
+# XY-SK150 Steuerung V0.2.1 – Linux und Windows 11
+
+Diese lokale Fassung ergänzt native Windows-COM-Ports und einen CMake-Build.
+Windows-Anleitung: [WINDOWS.md](WINDOWS.md). Die folgenden Linux-Hinweise gelten weiterhin.
+
+**Windows 11 (64 Bit):** Das fertige Paket ist unter [Releases](https://github.com/MartinD1978/xy-sk150-control/releases/tag/v0.2.1-windows) verfügbar.
+ZIP vollständig entpacken, `sk150.exe` starten und den COM-Port unter **Verbindung → Schnittstelle auswählen …** wählen.
 
 © 2026 Martin Dietl · Software: Martin-Dietl-Softwarelizenz 1.1 · MD-Logo ausgenommen
 

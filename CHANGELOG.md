@@ -1,5 +1,14 @@
 # Änderungen
 
+## V0.2.1 Windows – 18. Oktober 2026
+
+- Native COM-Port-Unterstützung für Windows 11 (64 Bit), einschließlich COM10 und höher.
+- Portauswahl mit aktualisierbarer Liste und Speicherung der Verbindungsparameter.
+- Windows-Manifest, CMake-Build und Anleitung ergänzt; Linux-Build bleibt erhalten.
+- Windows-Paket mit EXE, benötigten DLLs, Lizenzhinweisen und vollständigem Anwendungsquellcode.
+- Bestehende Softwaretests und GUI-Starttest bestanden; Funktion am eigenen SK150 vom Anwender bestätigt.
+- 12-V-Startlimit und vorhandene Modbus-Schutzprüfungen beibehalten.
+
 ## V0.2.1 – 18. Oktober 2026
 
 - Martin-Dietl-Softwarelizenz 1.1: einmalige Nutzungsmeldung auch für Behörden,
