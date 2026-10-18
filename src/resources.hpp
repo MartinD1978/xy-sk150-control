@@ -38,7 +38,7 @@ inline constexpr const char MdLogoSvg[] = R"resource(<?xml version="1.0" encodin
 </svg>
 )resource";
 inline constexpr const char SoftwareLicense[] = R"resource(Martin-Dietl-Softwarelizenz
-Version 1.0 · 18. Oktober 2026
+Version 1.1 · 18. Oktober 2026
 
 Copyright (c) 2026 Martin Dietl
 © 2026 Martin Dietl
@@ -48,30 +48,47 @@ Diese Lizenz gilt für die mit ihr bereitgestellte Software „XY-SK150 Steuerun
 einschließlich ihres eigenen Quellcodes und ihrer Dokumentation (nachfolgend
 „Software“). Martin Dietl ist nachfolgend der „Lizenzgeber“.
 
-1. Private und nichtkommerzielle Nutzung
+1. Private Nutzung
 
-Die Software darf für private, nichtkommerzielle Zwecke kostenlos genutzt,
-vervielfältigt, untersucht und verändert werden. Eine Meldung an den Lizenzgeber
-ist dafür nicht erforderlich. Nichtkommerzielle Weitergabe ist unter den
-Bedingungen der Ziffern 4 und 5 erlaubt.
+Natürliche Personen dürfen die Software für eigene private, nichtkommerzielle
+Zwecke kostenlos nutzen, vervielfältigen, untersuchen und verändern. Eine Meldung
+an den Lizenzgeber ist dafür nicht erforderlich. Die Nutzung für ein Unternehmen,
+eine öffentliche Einrichtung, eine Bildungseinrichtung oder eine andere
+Organisation gilt unabhängig von einer Gewinnerzielungsabsicht nicht als private
+Nutzung; dafür gilt Ziffer 2. Nichtkommerzielle Weitergabe ist unter den Bedingungen
+der Ziffern 4 und 5 erlaubt.
 
-2. Kostenlose firmeninterne Nutzung mit einmaliger Meldung
+2. Kostenlose interne Nutzung durch Unternehmen, Einrichtungen und Organisationen
 
-Unternehmen und selbstständig Tätige dürfen die Software für eigene interne
-betriebliche oder berufliche Zwecke kostenlos nutzen, vervielfältigen und
-anpassen. Dies umfasst etwa die Verwendung als internes Werkzeug in Werkstatt,
-Entwicklung, Prüfung oder Produktion, auch wenn dabei entgeltliche Waren oder
-Dienstleistungen entstehen. Die Software selbst darf dabei nicht Dritten als
-Produkt, entgeltliche Softwareleistung oder Bestandteil eines solchen Angebots
-überlassen oder zur Nutzung angeboten werden; hierfür gilt Ziffer 3.
+Unternehmen, selbstständig Tätige, Behörden, öffentliche Einrichtungen, Schulen,
+Hochschulen, sonstige Bildungs- und Forschungseinrichtungen, Vereine, gemeinnützige
+Einrichtungen sowie andere Organisationen dürfen die Software für eigene interne
+betriebliche, berufliche, öffentliche, pädagogische, wissenschaftliche oder
+organisatorische Zwecke kostenlos nutzen, vervielfältigen und anpassen. Dies gilt
+unabhängig von Rechtsform, Trägerschaft oder Gewinnerzielungsabsicht.
 
-Voraussetzung für die firmeninterne Nutzung ist eine einmalige E-Mail-Meldung
-an dietl.martin@mail.de vor oder spätestens bei Beginn dieser Nutzung. Die Meldung
-muss den Namen des Unternehmens bzw. der selbstständig tätigen Person und den
-Hinweis enthalten, dass „XY-SK150 Steuerung“ intern genutzt wird. Eine Meldung pro
-Unternehmen genügt für sämtliche internen Nutzer, Installationen, Standorte und
-späteren Programmaktualisierungen. Jedes rechtlich selbstständige Unternehmen
-meldet sich gesondert. Selbstständig Tätige melden sich einmal für ihren Betrieb.
+Dazu gehört der Einsatz als internes Werkzeug in Werkstatt, Entwicklung, Prüfung,
+Produktion, Verwaltung, Lehre und Forschung, auch wenn dabei entgeltliche Waren
+oder Dienstleistungen entstehen. Die Nutzung durch Lehrkräfte und Lernende im
+Rahmen der eigenen Lehrveranstaltungen ist eingeschlossen. Die Software selbst
+darf dabei nicht Dritten als Produkt, entgeltliche Softwareleistung oder
+Bestandteil eines solchen Angebots überlassen oder zur Nutzung angeboten werden;
+hierfür gilt Ziffer 3.
+
+Voraussetzung für diese interne Nutzung ist eine einmalige E-Mail-Meldung an
+dietl.martin@mail.de vor oder spätestens bei Beginn dieser Nutzung. Die Meldung
+muss den Namen des Unternehmens, der Einrichtung, der Organisation bzw. der
+selbstständig tätigen Person und den Hinweis enthalten, dass „XY-SK150 Steuerung“
+dort intern genutzt wird.
+
+Eine Meldung pro Unternehmen, Einrichtung oder Organisation genügt für sämtliche
+internen Nutzer, Installationen, Standorte und späteren Programmaktualisierungen.
+Es ist keine Meldung pro Beschäftigtem, Lehrkraft, Lernendem oder Arbeitsplatz
+nötig. Rechtlich selbstständige Unternehmen sowie organisatorisch eigenständige
+Einrichtungen oder Organisationen, etwa einzelne Schulen oder Hochschulen,
+melden sich jeweils gesondert. Abteilungen oder Fachbereiche derselben gemeldeten
+Einrichtung benötigen keine zusätzliche Meldung. Selbstständig Tätige melden
+sich einmal für ihren Betrieb.
 
 Die Meldung ist keine Genehmigungsanfrage. Eine Antwort oder Bestätigung des
 Lizenzgebers muss nicht abgewartet werden. Eine laufende Berichterstattung,
@@ -108,7 +125,7 @@ enthalten. Eine reine Binärweitergabe oder ein bloßer Hinweis auf eine
 möglicherweise später verfügbare Quellcodefassung genügt nicht.
 
 Die Software und Änderungen daran müssen bei einer solchen Weitergabe unter
-dieser Lizenz, Version 1.0, bleiben. Zusätzliche Bedingungen dürfen die hierin
+dieser Lizenz, Version 1.1, bleiben. Zusätzliche Bedingungen dürfen die hierin
 eingeräumten Rechte nicht beschränken. Änderungen sind als solche zu kennzeichnen;
 sie dürfen nicht als unveränderte Originalfassung des Lizenzgebers ausgegeben
 werden. Eigene Urheberhinweise zu Änderungen dürfen ergänzt werden.
@@ -160,18 +177,21 @@ ausdrücklich eingeräumten Rechte werden nicht gewährt. Gesetzliche Rechte,
 die keiner vertraglichen Erlaubnis bedürfen, bleiben unberührt.
 
 Diese Lizenz betrifft die mit diesem Lizenztext bereitgestellte Fassung.
-Rechte an früher tatsächlich unter einer anderen Lizenz, insbesondere der
+Rechte an früher tatsächlich unter einer anderen Lizenz, insbesondere einer früheren Fassung dieser Lizenz oder der
 MIT-Lizenz, erhaltenen Fassungen werden hierdurch nicht nachträglich eingeschränkt.
 
 Dies ist eine individuelle Source-Available-Lizenz. Sie ist weder die MIT-Lizenz
 noch eine von der Open Source Initiative anerkannte Open-Source-Lizenz.
 )resource";
 inline constexpr const char LicenseNotice[] = R"resource(Software: © 2026 Martin Dietl.
-Martin-Dietl-Softwarelizenz, Version 1.0; siehe LICENSE.
-Kontakt für Firmenmeldungen und Genehmigungsanfragen: dietl.martin@mail.de
+Martin-Dietl-Softwarelizenz, Version 1.1; siehe LICENSE.
+Kontakt für Nutzungsmeldungen und Genehmigungsanfragen: dietl.martin@mail.de
 
-Private Nutzung ist kostenlos und ohne Meldung erlaubt. Firmeninterne Nutzung
-ist kostenlos nach einmaliger E-Mail-Meldung pro Unternehmen erlaubt.
+Private Nutzung ist kostenlos und ohne Meldung erlaubt. Interne Nutzung durch
+Unternehmen, Selbstständige, Behörden, öffentliche Einrichtungen, Schulen,
+Hochschulen, Bildungs-/Forschungseinrichtungen, Vereine, gemeinnützige und andere
+Organisationen ist kostenlos nach einmaliger E-Mail-Meldung pro Unternehmen,
+Einrichtung oder Organisation erlaubt.
 Kommerzielle Verwertung über diese interne Nutzung hinaus benötigt die
 vorherige ausdrückliche Zustimmung von Martin Dietl. Weitergabe erfordert den
 vollständigen zugehörigen Quellcode und den Erhalt der Lizenz-/Urheberhinweise.

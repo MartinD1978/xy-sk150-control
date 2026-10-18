@@ -250,10 +250,10 @@ inline void ShowAbout(wxWindow* parent) {
         if(large) label->SetFont(label->GetFont().MakeBold().Scale(1.4));
         outer->Add(label,0,wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM,12);
     };
-    addText("XY-SK150 Steuerung",true); addText("Version V0.2");
+    addText("XY-SK150 Steuerung",true); addText("Version V0.2.1");
     addText(wxS("Steuerung und Messwertanzeige\nfür das XY-SK150-Netzteil."));
     addText(wxS("© 2026 Martin Dietl"));
-    addText("dietl.martin@mail.de"); addText(wxS("Martin-Dietl-Softwarelizenz 1.0 · MD-Logo ausgenommen"));
+    addText("dietl.martin@mail.de"); addText(wxS("Martin-Dietl-Softwarelizenz 1.1 · MD-Logo ausgenommen"));
     auto buttons=new wxBoxSizer(wxHORIZONTAL);
     auto license=new wxButton(&dialog,wxID_ANY,wxS("Lizenz anzeigen …"));
     auto close=new wxButton(&dialog,wxID_OK,wxS("Schließen")); close->SetDefault();
