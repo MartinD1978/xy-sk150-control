@@ -11,6 +11,14 @@
 #include <filesystem>
 #include <functional>
 #include <set>
+#include <cstring>
+#include "serial_path.hpp"
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
 
 class PowerButton : public wxButton {
     sk150::ConnectionState shown_=sk150::ConnectionState::Disconnected;
@@ -77,6 +85,13 @@ public:
         if(auto cancel=wxDynamicCast(FindWindow(wxID_CANCEL),wxButton)) cancel->SetLabel("Abbrechen");
         auto scan=[this] {
             const auto value=port_->GetValue(); std::set<std::string> ports;
+#ifdef _WIN32
+            std::vector<char> names(65536);
+            if(QueryDosDeviceA(nullptr,names.data(),static_cast<DWORD>(names.size()))) {
+                for(const char* name=names.data(); *name; name+=std::strlen(name)+1)
+                    if(sk150::validSerialPath(name)) ports.insert(name);
+            }
+#else
             std::error_code error;
             for(const char* directory:{"/dev","/dev/serial/by-id"}) {
                 for(std::filesystem::directory_iterator it(directory,error),end; !error&&it!=end; it.increment(error)) {
@@ -86,6 +101,7 @@ public:
                 }
                 error.clear();
             }
+#endif
             if(!value.empty()) ports.insert(value.ToStdString());
             port_->Clear(); for(const auto& path:ports) port_->Append(wxString::FromUTF8(path));
             port_->SetValue(value);
@@ -93,8 +109,8 @@ public:
         scan(); refresh->Bind(wxEVT_BUTTON,[scan](wxCommandEvent&){scan();});
         Bind(wxEVT_BUTTON,[this](wxCommandEvent&){
             selected=port_->GetValue(); selected.Trim().Trim(false);
-            if(selected.empty()||!selected.StartsWith("/")||selected.Find('\n')!=wxNOT_FOUND||selected.Find('\r')!=wxNOT_FOUND) {
-                wxMessageBox(wxS("Bitte einen absoluten Gerätepfad angeben."),"Schnittstelle",wxOK|wxICON_WARNING,this); return;
+            if(!sk150::validSerialPath(selected.ToStdString())) {
+                wxMessageBox(wxS("Bitte eine gültige Schnittstelle angeben (Windows: COM3; Linux: /dev/ttyUSB0)."),"Schnittstelle",wxOK|wxICON_WARNING,this); return;
             }
             unsigned long baud=0,bits=0,stop=0;
             if(!baud_->GetStringSelection().ToULong(&baud)||!bits_->GetStringSelection().ToULong(&bits)||!stop_->GetStringSelection().ToULong(&stop)||parity_->GetSelection()==wxNOT_FOUND) return;

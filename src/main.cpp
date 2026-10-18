@@ -229,7 +229,7 @@ class Window : public wxFrame {
     sk150::VoltageLimit limit_;
     sk150::SerialSettings serial_;
     sk150::ConnectionState connectionState_=sk150::ConnectionState::Disconnected;
-    wxString portPath_="/dev/ttyUSB0";
+    wxString portPath_=sk150::defaultSerialPath();
     std::unique_ptr<wxFileConfig> preferences_;
     int displayedMode_=-2;
     std::array<wxStaticText*,6> readings_{};
@@ -502,8 +502,8 @@ public:
         menus->Append(settingsMenu,"Einstellungen"); menus->Append(helpMenu,"Hilfe"); SetMenuBar(menus);
         preferences_=std::make_unique<wxFileConfig>("sk150-control",wxEmptyString,
             (configPath.empty() ? wxStandardPaths::Get().GetUserConfigDir()+"/sk150-control.conf" : configPath),wxEmptyString,wxCONFIG_USE_LOCAL_FILE);
-        preferences_->Read("serial_port",&portPath_,"/dev/ttyUSB0");
-        if(!portPath_.StartsWith("/")||portPath_.Contains("\n")||portPath_.Contains("\r")) portPath_="/dev/ttyUSB0";
+        preferences_->Read("serial_port",&portPath_,wxString::FromUTF8(sk150::defaultSerialPath()));
+        if(!sk150::validSerialPath(portPath_.ToStdString())) portPath_=sk150::defaultSerialPath();
         serial_.baud=static_cast<unsigned>(preferences_->ReadLong("baud",115200));
         serial_.dataBits=static_cast<unsigned>(preferences_->ReadLong("data_bits",8));
         serial_.parity=static_cast<sk150::Parity>(preferences_->ReadLong("parity",0));

@@ -4,6 +4,15 @@
 #include <chrono>
 #include <cerrno>
 #include <cstring>
+#include <stdexcept>
+#include <thread>
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#include "serial_path.hpp"
+#else
 #include <fcntl.h>
 #include <poll.h>
 #include <stdexcept>
@@ -11,6 +20,7 @@
 #include <termios.h>
 #include <thread>
 #include <unistd.h>
+#endif
 
 namespace sk150 {
 uint16_t crc(const std::vector<uint8_t>& b) {
@@ -85,6 +95,15 @@ std::vector<uint8_t> oppRequest(unsigned v) {
     if(v>1500) throw std::runtime_error("OPP muss zwischen 0 und 150,0 W liegen");
     return frame({1,6,0,0x55,static_cast<uint8_t>(v>>8),static_cast<uint8_t>(v&255)});
 }
+#ifdef _WIN32
+static unsigned baudCode(unsigned baud) {
+    switch(baud) {
+        case 1200: case 2400: case 4800: case 9600: case 19200:
+        case 38400: case 57600: case 115200: case 230400: return baud;
+        default: throw std::runtime_error("Nicht unterstützte Baudrate");
+    }
+}
+#else
 static speed_t baudCode(unsigned baud) {
     switch(baud) {
         case 1200:return B1200; case 2400:return B2400; case 4800:return B4800;
@@ -93,6 +112,7 @@ static speed_t baudCode(unsigned baud) {
         default:throw std::runtime_error("Nicht unterstützte Baudrate");
     }
 }
+#endif
 void SerialSettings::validate() const {
     baudCode(baud);
     if(dataBits<5||dataBits>8) throw std::runtime_error("Datenbits müssen zwischen 5 und 8 liegen");
@@ -100,6 +120,42 @@ void SerialSettings::validate() const {
     if(slave<1||slave>247) throw std::runtime_error("Modbus-Slave-Adresse muss zwischen 1 und 247 liegen");
     if(parity!=Parity::None&&parity!=Parity::Even&&parity!=Parity::Odd) throw std::runtime_error("Ungültige Parität");
 }
+#ifdef _WIN32
+static void fail(const char* context) {
+    throw std::runtime_error(std::string(context)+" (Windows-Fehler "+std::to_string(GetLastError())+")");
+}
+Port::Port(const std::string& path, SerialSettings settings):settings_(settings) {
+    settings_.validate();
+    if(!validSerialPath(path)) throw std::runtime_error("Bitte einen COM-Port angeben, z. B. COM3");
+    std::string name=path;
+    if(name.rfind("\\\\.\\",0)==0) name=name.substr(4);
+    const std::string device="\\\\.\\"+name;
+    handle_=CreateFileA(device.c_str(),GENERIC_READ|GENERIC_WRITE,0,nullptr,OPEN_EXISTING,FILE_FLAG_OVERLAPPED,nullptr);
+    if(handle_==INVALID_HANDLE_VALUE) fail("Seriellen Port öffnen");
+    try {
+        DCB d{}; d.DCBlength=sizeof d;
+        if(!GetCommState(handle_,&d)) fail("Portkonfiguration lesen");
+        d.BaudRate=settings.baud; d.ByteSize=static_cast<BYTE>(settings.dataBits);
+        d.Parity=settings.parity==Parity::None?NOPARITY:settings.parity==Parity::Even?EVENPARITY:ODDPARITY;
+        d.StopBits=settings.stopBits==1?ONESTOPBIT:TWOSTOPBITS;
+        d.fBinary=TRUE; d.fParity=settings.parity!=Parity::None;
+        d.fOutxCtsFlow=FALSE; d.fOutxDsrFlow=FALSE; d.fDtrControl=DTR_CONTROL_DISABLE;
+        d.fDsrSensitivity=FALSE; d.fTXContinueOnXoff=TRUE; d.fOutX=FALSE; d.fInX=FALSE;
+        d.fErrorChar=FALSE; d.fNull=FALSE; d.fRtsControl=RTS_CONTROL_DISABLE; d.fAbortOnError=FALSE;
+        if(!SetCommState(handle_,&d)) fail("Portkonfiguration setzen");
+        DCB applied{}; applied.DCBlength=sizeof applied;
+        if(!GetCommState(handle_,&applied)) fail("Portkonfiguration prüfen");
+        if(applied.BaudRate!=d.BaudRate||applied.ByteSize!=d.ByteSize||applied.Parity!=d.Parity||applied.StopBits!=d.StopBits)
+            throw std::runtime_error("Der serielle Treiber übernimmt die gewählten Parameter nicht");
+        // Return available bytes promptly; the overlapped deadline bounds each transaction.
+        COMMTIMEOUTS timeouts{};
+        timeouts.ReadIntervalTimeout=MAXDWORD;
+        if(!SetCommTimeouts(handle_,&timeouts)) fail("Zeitlimits setzen");
+        if(!PurgeComm(handle_,PURGE_RXCLEAR|PURGE_TXCLEAR)) fail("Portpuffer leeren");
+    } catch(...) { CloseHandle(handle_); handle_=INVALID_HANDLE_VALUE; throw; }
+}
+Port::~Port() { if(handle_!=INVALID_HANDLE_VALUE) CloseHandle(handle_); }
+#else
 static void fail(const char* context) { throw std::runtime_error(std::string(context)+": "+strerror(errno)); }
 Port::Port(const std::string& path, SerialSettings settings):settings_(settings) {
     settings_.validate();
@@ -134,6 +190,7 @@ Port::Port(const std::string& path, SerialSettings settings):settings_(settings)
     } catch(...) { close(fd_); fd_=-1; throw; }
 }
 Port::~Port() { if(fd_>=0) close(fd_); }
+#endif
 std::vector<uint8_t> Port::transact(const std::vector<uint8_t>& request) {
     auto req=request;
     req[0]=static_cast<uint8_t>(settings_.slave);
@@ -145,8 +202,40 @@ std::vector<uint8_t> Port::transact(const std::vector<uint8_t>& request) {
     const unsigned bits=1+settings_.dataBits+settings_.stopBits+(settings_.parity==Parity::None?0:1);
     const unsigned gap=std::max(5000u,(3500000u*bits+settings_.baud-1)/settings_.baud);
     std::this_thread::sleep_for(std::chrono::microseconds(gap));
+#ifdef _WIN32
+    if(!PurgeComm(handle_,PURGE_RXCLEAR)) fail("Empfangspuffer leeren");
+#else
     if(tcflush(fd_,TCIFLUSH)<0) fail("Empfangspuffer leeren");
+#endif
     auto deadline=Clock::now()+std::chrono::milliseconds(500);
+#ifdef _WIN32
+    auto transfer=[&](bool sending,uint8_t* data,size_t size) -> size_t {
+        if(Clock::now()>=deadline) throw std::runtime_error("Modbus-Zeitüberschreitung (500 ms)");
+        OVERLAPPED operation{}; operation.hEvent=CreateEventW(nullptr,TRUE,FALSE,nullptr);
+        if(!operation.hEvent) fail("Ereignis anlegen");
+        DWORD count=0;
+        BOOL ok=sending ? WriteFile(handle_,data,static_cast<DWORD>(size),&count,&operation)
+                        : ReadFile(handle_,data,static_cast<DWORD>(size),&count,&operation);
+        DWORD error=ok?ERROR_SUCCESS:GetLastError();
+        if(!ok&&error==ERROR_IO_PENDING) {
+            auto remaining=std::chrono::duration_cast<std::chrono::milliseconds>(deadline-Clock::now()).count();
+            DWORD result=WaitForSingleObject(operation.hEvent,static_cast<DWORD>(std::max<int64_t>(0,remaining)));
+            if(result!=WAIT_OBJECT_0) {
+                // Settle cancellation before the stack buffer/event can be released.
+                CancelIoEx(handle_,&operation);
+                GetOverlappedResult(handle_,&operation,&count,TRUE);
+                CloseHandle(operation.hEvent);
+                throw std::runtime_error("Modbus-Zeitüberschreitung / Verbindung unterbrochen");
+            }
+            ok=GetOverlappedResult(handle_,&operation,&count,FALSE);
+            error=ok?ERROR_SUCCESS:GetLastError();
+        }
+        CloseHandle(operation.hEvent);
+        if(!ok) { SetLastError(error); fail(sending?"Senden":"Empfangen"); }
+        if(!count) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        return count;
+    };
+#else
     auto wait=[&](short events) {
         for(;;) {
             int ms=static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(deadline-Clock::now()).count());
@@ -158,13 +247,25 @@ std::vector<uint8_t> Port::transact(const std::vector<uint8_t>& request) {
             if(p.revents&events) return;
         }
     };
+    #endif
     size_t sent=0;
-    while(sent<req.size()) { wait(POLLOUT); auto n=write(fd_,req.data()+sent,req.size()-sent);
-        if(n<0) { if(errno==EINTR||errno==EAGAIN) continue; fail("Senden"); } sent+=static_cast<size_t>(n); }
+    while(sent<req.size()) {
+#ifdef _WIN32
+        sent+=transfer(true,req.data()+sent,req.size()-sent);
+#else
+        wait(POLLOUT); auto n=write(fd_,req.data()+sent,req.size()-sent);
+        if(n<0) { if(errno==EINTR||errno==EAGAIN) continue; fail("Senden"); } sent+=static_cast<size_t>(n);
+#endif
+    }
     std::vector<uint8_t> out; size_t expected=3;
     while(out.size()<expected) {
-        wait(POLLIN); uint8_t buffer[256]; auto n=read(fd_,buffer,std::min(sizeof buffer,expected-out.size()));
+        uint8_t buffer[256];
+#ifdef _WIN32
+        auto n=transfer(false,buffer,std::min(sizeof buffer,expected-out.size()));
+#else
+        wait(POLLIN); auto n=read(fd_,buffer,std::min(sizeof buffer,expected-out.size()));
         if(n<0) { if(errno==EINTR||errno==EAGAIN) continue; fail("Empfangen"); }
+#endif
         if(n==0) continue;
         out.insert(out.end(),buffer,buffer+n);
         if(out.size()>=3) {

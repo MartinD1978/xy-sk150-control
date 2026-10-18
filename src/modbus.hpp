@@ -33,7 +33,11 @@ std::vector<uint8_t> ovpRequest(unsigned centivolts);
 std::vector<uint8_t> ocpRequest(unsigned milliamps);
 std::vector<uint8_t> oppRequest(unsigned deciwatts);
 class Port {
+#ifdef _WIN32
+    void* handle_ = reinterpret_cast<void*>(-1);
+#else
     int fd_ = -1;
+#endif
     SerialSettings settings_;
     std::vector<uint8_t> transact(const std::vector<uint8_t>& request);
 public:
