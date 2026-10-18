@@ -1,6 +1,6 @@
-# XY-SK150 Steuerung V0.2 – Debian 13
+# XY-SK150 Steuerung V0.2.1 – Debian 13
 
-© 2026 Martin Dietl · Software: Martin-Dietl-Softwarelizenz 1.0 · MD-Logo ausgenommen
+© 2026 Martin Dietl · Software: Martin-Dietl-Softwarelizenz 1.1 · MD-Logo ausgenommen
 
 C++17-Anwendung mit Live-Messwerten, einstellbarer Spannung und Strombegrenzung, optionalem
 Spannungslimit, Ausgang EIN/AUS, CV/CC-Anzeige und getrennten OVP/OCP- und
@@ -9,16 +9,22 @@ Standard: `/dev/ttyUSB0`, Modbus RTU, 115200 Baud, 8N1, Slave 1.
 
 ## Lizenz und Kontakt
 
-Es gilt die **Martin-Dietl-Softwarelizenz, Version 1.0** in `LICENSE`.
+Es gilt die **Martin-Dietl-Softwarelizenz, Version 1.1** in `LICENSE`.
 Der Quellcode ist zugänglich (Source Available); dies ist keine MIT- oder
 OSI-anerkannte Open-Source-Lizenz.
 
 - Private, nichtkommerzielle Nutzung: kostenlos, ohne Meldung.
-- Firmeninterne/betriebliche Nutzung: kostenlos nach einmaliger E-Mail-Meldung
-  pro Unternehmen, auch bei mehreren Nutzern, Standorten oder Installationen.
-  Selbstständige melden sich einmal für ihren Betrieb. Name und Hinweis auf die
-  interne Verwendung der XY-SK150 Steuerung genügen. Meldung vor oder spätestens
-  bei Nutzungsbeginn; eine Antwort muss nicht abgewartet werden.
+- Interne Nutzung durch Unternehmen, Selbstständige, Behörden, öffentliche
+  Einrichtungen, Schulen, Hochschulen, sonstige Bildungs-/Forschungseinrichtungen,
+  Vereine, gemeinnützige und andere Organisationen: kostenlos nach einmaliger
+  E-Mail-Meldung pro Unternehmen, Einrichtung oder Organisation. Das gilt auch
+  ohne Gewinnerzielungsabsicht und umfasst die eigene Lehre mit Lernenden.
+  Eine Meldung genügt für alle internen Nutzer, Installationen und Standorte;
+  keine Meldung pro Lehrkraft oder Lernendem. Organisatorisch eigenständige
+  Einrichtungen melden sich jeweils gesondert; Abteilungen derselben gemeldeten
+  Einrichtung nicht. Name und Hinweis auf die interne Verwendung genügen.
+  Meldung vor oder spätestens bei Nutzungsbeginn; eine Antwort muss nicht
+  abgewartet werden. Selbstständige melden sich einmal für ihren Betrieb.
 - Verkauf, Einbindung in kommerzielle Produkte und weitere kommerzielle Verwertung
   außerhalb der erlaubten internen Nutzung: nur mit vorheriger ausdrücklicher Zustimmung.
 - Bei erlaubter Weitergabe muss der vollständige zugehörige Quellcode einschließlich
@@ -28,11 +34,11 @@ OSI-anerkannte Open-Source-Lizenz.
 - Das MD-Logo ist ausgenommen; unveränderte Anzeige und Weitergabe innerhalb
   dieser Software sind erlaubt, eigenständige Nutzung wird nicht eingeräumt.
 
-**Firmenmeldung und Genehmigungsanfragen: dietl.martin@mail.de**
+**Nutzungsmeldung und Genehmigungsanfragen: dietl.martin@mail.de**
 Die Software verschickt keine E-Mails oder Nutzungsdaten. Die Meldung erfolgt manuell.
 Die Kurzfassung ersetzt nicht den vollständigen Lizenztext.
 Die neue Lizenz gilt für die mit ihr bereitgestellte Fassung; sie entzieht keine
-bereits an früheren MIT-Fassungen eingeräumten Rechte.
+bereits an früheren Fassungen eingeräumten Rechte.
 
 ## Bauen und starten
 
@@ -105,7 +111,7 @@ unberührt. Nur ein Modbus-Master darf aktiv sein.
   Die doppelte Überschrift im Fenster entfällt.
 - **Gerät → Informationen …** zeigt die laufend aktualisierte Eingangsspannung;
   im Hauptfenster steht sie nicht mehr.
-- **Hilfe → Über …** zeigt das eingebettete MD-Logo, V0.2, Martin Dietl und den
+- **Hilfe → Über …** zeigt das eingebettete MD-Logo, V0.2.1, Martin Dietl und den
   Lizenzhinweis. **Lizenz anzeigen …** öffnet den vollständigen Lizenztext und den
   Logo-Ausschluss. Eine C++-/Plattformzeile wird nicht angezeigt.
 - Unter der Verbindungsanzeige stehen drei gleich gestaltete Messfelder
